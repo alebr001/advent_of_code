@@ -13,7 +13,7 @@ def main():
             print(char + 4)
             break
 
-    # PART B
+    # PART B (kan ook voor part a gebruikt worden)
     list_of_chars = []
     length_of_marker = 14
     for char in range(len(lines_list[0])-1):
