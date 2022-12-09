@@ -4,11 +4,13 @@ import numpy as np
 def main():
     with open("input.txt", "r") as file:
         lines_list = file.readlines()
-    # create a list with the crates
-    list_of_list_of_crates = get_list_of_crates(lines_list)
 
     # create a list with the commands
     commands = lines_list[10:]
+
+    ##### ASSIGNEMNT A #####
+    # create a list with the crates
+    list_of_list_of_crates = get_list_of_crates(lines_list)
 
     # for every command, get the integers out and put them in vars
     for command in commands:
@@ -24,6 +26,22 @@ def main():
     # print out only the last record of each list
     for lst in list_of_list_of_crates:
         print(lst[-1], end="")
+
+    print()
+    ##### ASSIGNEMNT B #####
+    list_of_list_of_crates = get_list_of_crates(lines_list)
+    for command in commands:
+        command = command.replace("move ","").replace(" from ", ":").replace(" to ", ":").replace("\n","")
+        mv, frm, t = command.split(":")
+        mv, frm, t = int(mv), int(frm), int(t)
+
+        list_of_list_of_crates[t-1].extend((list_of_list_of_crates[frm-1][-mv:]))
+        del(list_of_list_of_crates[frm-1][-mv:])
+
+    # print out only the last record of each list
+    for lst in list_of_list_of_crates:
+        print(lst[-1], end="")
+
 
 def get_list_of_crates(lines_list):
     crates = lines_list[0:9]
