@@ -26,6 +26,12 @@ class Folder:
     def get_total_file_size(self):
         return self.total_file_size
 
+    def get_total_storage(self):
+        storage_size = self.get_total_file_size()
+        for folder in self.sub_folders:
+            storage_size += folder.get_total_storage()
+        return storage_size
+
     def get_own_name(self):
         return self.own_name
 
